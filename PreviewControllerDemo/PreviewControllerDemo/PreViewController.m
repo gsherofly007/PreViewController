@@ -11,9 +11,10 @@
 #import <AFNetworking.h>
 #import <SVProgressHUD.h>
 #define CreateButtonOnNavigationBarWithImage(imageNameStr , aTarget , aAction) [[UIBarButtonItem alloc] initWithImage:[[UIImage imageNamed:imageNameStr] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal] style:UIBarButtonItemStylePlain target:aTarget action:aAction]
-@interface PreViewController () <QLPreviewControllerDataSource>
+@interface PreViewController () <QLPreviewControllerDataSource,UIDocumentInteractionControllerDelegate>
 @property (strong, nonatomic)QLPreviewController *previewController;
 @property (copy, nonatomic)NSURL *fileURL; //文件路径
+@property (strong, nonatomic) UIDocumentInteractionController *documentController;
 @end
 
 @implementation PreViewController
@@ -21,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.navigationItem.leftBarButtonItem = CreateButtonOnNavigationBarWithImage(@"icon_new_back", self, @selector(cancel));
-    self.
+    self.navigationItem.rightBarButtonItem = CreateButtonOnNavigationBarWithImage(@"icon_Msg_personInfo", self, @selector(openDocumentInResourceFolder));
     self.view.backgroundColor = [UIColor whiteColor];
     self.title = @"预览";
     self.previewController  =  [[QLPreviewController alloc]  init];
@@ -109,5 +110,55 @@
 - (NSInteger)numberOfPreviewItemsInPreviewController:(QLPreviewController *)previewController{
     return 1;
 }
-
+- (void)openDocumentInResourceFolder {
+    //    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"test" ofType:@"pdf"];
+    NSString *strExt = self.fileURL.path;
+    
+    _documentController = [UIDocumentInteractionController  interactionControllerWithURL:self.fileURL];
+    _documentController.delegate = self;
+    _documentController.UTI = [self uti:strExt];
+    [_documentController presentOpenInMenuFromRect:CGRectZero inView:self.view animated:YES];
+}
+- (NSString *) uti:(NSString *) ext{
+    if([ext isEqualToString:@"txt"]){
+        return @"public.text";
+    }else if([ext isEqualToString:@"mp3"]){
+        return @"public.audiovisual-content";
+    }else if([ext isEqualToString:@"key"]){
+        return @"com.apple.keynote.key";
+    }else if([ext isEqualToString:@"doc"] ||
+             [ext isEqualToString:@"docx"]
+             ){
+        return @"com.microsoft.word.doc";
+    }else if ([ext isEqualToString:@"xls"] ||
+              [ext isEqualToString:@"xlsx"]
+              ){
+        return @"com.microsoft.excel.xls";
+    }else if ([ext isEqualToString:@"ppt"] || [ext isEqualToString:@"pptx"]){
+        return @"com.microsoft.powerpoint.ppt";
+    }else if ([ext isEqualToString:@"avi"]){
+        return @"public.avi";
+    }else if ([ext isEqualToString:@"mpeg-4"] ||
+              [ext isEqualToString:@"mpeg4"]
+              ){
+        return @"public.mpeg-4";
+    }else if ([ext isEqualToString:@"jpeg"] ||
+              [ext isEqualToString:@"jpg"]){
+        return @"public.jpeg";
+    }else
+    {
+        return @"public.content";
+    }
+    return nil;
+}
+#pragma mark - UIDocumentInteractionControllerDelegate
+- (void)documentInteractionController:(UIDocumentInteractionController *)controller willBeginSendingToApplication:(NSString *)application {
+    
+}
+- (void)documentInteractionController:(UIDocumentInteractionController *)controller didEndSendingToApplication:(NSString *)application {
+    
+}
+- (void)documentInteractionControllerDidDismissOpenInMenu:(UIDocumentInteractionController *)controller {
+    
+}
 @end
