@@ -27,7 +27,7 @@
     self.title = @"预览";
     self.previewController  =  [[QLPreviewController alloc]  init];
     self.previewController.dataSource  = self;
-    self.previewController.view.frame= CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height);
+    self.previewController.view.frame= CGRectMake(0, 120, self.view.bounds.size.width, self.view.bounds.size.height);
     
     [self addChildViewController:self.previewController];
     [self.view addSubview:self.previewController.view];
@@ -62,10 +62,11 @@
         NSURL *documentsDirectoryURL = [[NSFileManager defaultManager] URLForDirectory:NSDocumentDirectory inDomain:NSUserDomainMask appropriateForURL:nil create:NO error:nil];
         NSURL *url = [documentsDirectoryURL URLByAppendingPathComponent:fileName];
         self.fileURL = url;
-        [self presentViewController:self.previewController animated:YES completion:nil];
+//        [self presentViewController:self.previewController animated:YES completion:nil];
         //刷新界面,如果不刷新的话，不重新走一遍代理方法，返回的url还是上一次的url
         [self.previewController refreshCurrentPreviewItem];
-    }else {
+    }else
+    {
         [SVProgressHUD showWithStatus:@"下载中"];
         NSURLSessionDownloadTask *downloadTask = [manager downloadTaskWithRequest:request progress:^(NSProgress *downloadProgress){
             
@@ -76,7 +77,7 @@
         } completionHandler:^(NSURLResponse *response, NSURL *filePath, NSError *error) {
             [SVProgressHUD dismiss];
             self.fileURL = filePath;
-            [self presentViewController:self.previewController animated:YES completion:nil];
+//            [self presentViewController:self.previewController animated:YES completion:nil];
             //刷新界面,如果不刷新的话，不重新走一遍代理方法，返回的url还是上一次的url
             [self.previewController refreshCurrentPreviewItem];
         }];

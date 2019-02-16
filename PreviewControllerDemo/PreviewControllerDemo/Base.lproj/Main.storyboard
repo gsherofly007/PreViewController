@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13173"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -18,32 +19,21 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="O2c-ee-Kyg">
-                                <rect key="frame" x="141.5" y="280" width="92" height="55"/>
+                                <rect key="frame" x="106" y="281" width="162" height="55"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="CVd-tB-XUF"/>
-                                    <constraint firstAttribute="width" constant="92" id="Rwb-7b-uXM"/>
+                                    <constraint firstAttribute="width" constant="162" id="Dah-7D-9Kh"/>
+                                    <constraint firstAttribute="height" constant="55" id="bpV-Yy-7R9"/>
                                 </constraints>
-                                <state key="normal" title="预览本地文件"/>
+                                <state key="normal" title="预览本地或网络文件"/>
                                 <connections>
                                     <action selector="previewLocal:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gUO-GB-9uu"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kcu-no-Cbd">
-                                <rect key="frame" x="141.5" y="378" width="92" height="55"/>
-                                <state key="normal" title="预览网络文件"/>
-                                <connections>
-                                    <action selector="previewInternet:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LiY-R7-qCC"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="kcu-no-Cbd" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="KXs-b1-UdF"/>
-                            <constraint firstItem="O2c-ee-Kyg" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="R1z-No-HnJ"/>
-                            <constraint firstItem="kcu-no-Cbd" firstAttribute="top" secondItem="O2c-ee-Kyg" secondAttribute="bottom" constant="43" id="TDN-1S-8vS"/>
-                            <constraint firstItem="kcu-no-Cbd" firstAttribute="width" secondItem="O2c-ee-Kyg" secondAttribute="width" id="VjS-57-5Kn"/>
-                            <constraint firstItem="kcu-no-Cbd" firstAttribute="height" secondItem="O2c-ee-Kyg" secondAttribute="height" id="ajG-14-WIa"/>
-                            <constraint firstItem="O2c-ee-Kyg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="260" id="cOy-bP-1jp"/>
+                            <constraint firstItem="O2c-ee-Kyg" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="106" id="JsK-Uq-vB2"/>
+                            <constraint firstItem="O2c-ee-Kyg" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="261" id="tX1-mv-cbS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
