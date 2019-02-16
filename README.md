@@ -1,0 +1,3 @@
+# PreviewControllerDemo
+工作期间，自己封装了一个PreViewController类，可远程下载或本地浏览文件。
+直接调用 PreViewController 类方法中的 previewInternet方法，传递文件路径即可
